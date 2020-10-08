@@ -1,0 +1,17 @@
+plugins {
+
+    // Build uber-jar
+    id 'com.github.johnrengelman.shadow' version '6.0.0' apply false
+}
+
+allprojects {
+    group "ru.otus"
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        "com.google.guava:guava"
+    }
+}
