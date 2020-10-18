@@ -8,3 +8,4 @@
  */
 
 rootProject.name = 'homeworks'
+include 'hw01-gradle'
