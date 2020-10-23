@@ -17,7 +17,7 @@ idea {
 }
 
 allprojects {
-    group "homeworks"
+    group "my.homeworks"
 
     repositories {
         mavenCentral()
