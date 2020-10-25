@@ -18,14 +18,12 @@ public class DiyArrayList<T> implements List<T>
 
     @Override
     public boolean isEmpty() {
-        makeThrow();
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean contains(Object o) {
-        makeThrow();
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -40,8 +38,7 @@ public class DiyArrayList<T> implements List<T>
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        makeThrow();
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -63,14 +60,12 @@ public class DiyArrayList<T> implements List<T>
 
     @Override
     public boolean remove(Object o) {
-        makeThrow();
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        makeThrow();
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -83,25 +78,22 @@ public class DiyArrayList<T> implements List<T>
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        makeThrow();
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        makeThrow();
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        makeThrow();
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void clear() {
-        makeThrow();
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -118,25 +110,22 @@ public class DiyArrayList<T> implements List<T>
 
     @Override
     public void add(int index, T element) {
-        makeThrow();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public T remove(int index) {
-        makeThrow();
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public int indexOf(Object o) {
-        makeThrow();
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        makeThrow();
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -147,18 +136,12 @@ public class DiyArrayList<T> implements List<T>
 
     @Override
     public ListIterator<T> listIterator(int index) {
-        makeThrow();
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        makeThrow();
-        return null;
-    }
-
-    private void makeThrow()
-    {
         throw new UnsupportedOperationException();
     }
+
 }
