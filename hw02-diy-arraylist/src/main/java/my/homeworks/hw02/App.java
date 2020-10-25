@@ -6,10 +6,11 @@ import my.homeworks.hw02.DiyArrayList.DiyArrayList;
 import my.homeworks.hw02.checker.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class App
 {
-    private ArrayList<Checker> checkers = new ArrayList<>();
+    private List<Checker> checkers = new ArrayList<>();
 
     App()
     {
@@ -31,10 +32,10 @@ public class App
         }
     }
 
-    private DiyArrayList<String> createDiy()
+    private List<String> createDiy()
     {
         final int listSize = 40;
-        DiyArrayList<String> diy = new DiyArrayList<>();
+        List<String> diy = new DiyArrayList<>();
         for (int i = 0; i < listSize; ++i) {
             String r = "A".repeat(i+1);
             diy.add(r);

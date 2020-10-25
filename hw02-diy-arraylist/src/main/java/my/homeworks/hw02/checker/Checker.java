@@ -1,22 +1,27 @@
 package my.homeworks.hw02.checker;
 
-import my.homeworks.hw02.DiyArrayList.DiyArrayList;
-
 import java.util.Arrays;
+import java.util.List;
 
-abstract public class Checker<String>
+abstract public class Checker
 {
-    protected DiyArrayList<String> diy;
+    private List<String> diy;
 
-    public Checker(DiyArrayList<String> diy)
+    public Checker(List<String> diy)
     {
         this.diy = diy;
     }
 
     abstract public void check();
 
-    protected void printArray(String[] arr)
+    protected List<String> getDiy()
     {
-        System.out.println(Arrays.toString(arr));
+        return diy;
     }
+
+    protected void printDiy()
+    {
+        System.out.println(Arrays.toString(diy.toArray()));
+    }
+
 }
