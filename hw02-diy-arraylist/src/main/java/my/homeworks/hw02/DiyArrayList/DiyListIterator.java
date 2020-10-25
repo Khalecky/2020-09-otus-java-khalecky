@@ -2,25 +2,47 @@ package my.homeworks.hw02.DiyArrayList;
 
 import java.util.ListIterator;
 
-public class DiyListIterator<T> extends DiyIterator<T> implements ListIterator<T>
+public class DiyListIterator<T> implements ListIterator<T>
 {
+    private int index = -1;
+
+    private DiyArrayList<T> diyArrayList;
 
     public DiyListIterator(DiyArrayList<T> diyArrayList)
     {
-        super(diyArrayList);
+        this.diyArrayList = diyArrayList;
+    }
+
+    @Override
+    public boolean hasNext()
+    {
+        return index + 1 < diyArrayList.size();
+    }
+
+    private void incrIndex()
+    {
+        ++index;
+    }
+
+    @Override
+    public T next() {
+        if (hasNext()) {
+            incrIndex();
+            return diyArrayList.get(index);
+        }
+        return null;
     }
 
     @Override
     public boolean hasPrevious()
     {
-
         return previousIndex() >= 0;
     }
 
     @Override
     public T previous() {
         decrIndex();
-        return at(index);
+        return diyArrayList.get(index);
     }
 
     private void decrIndex()

@@ -4,21 +4,30 @@ import java.util.*;
 
 public class DiyArrayList<T> implements List<T>
 {
-    private T[] storage;
+    /**
+     * Коэффициент расширения хранилища
+     */
+    final int kExtend = 2;
 
-    public DiyArrayList()
-    {
-    }
+    final int initCapacity = 5;
+
+    private T[] storage = (T[]) new Object[initCapacity];
+
+    /**
+     * Текущее количество хранимых объектов
+     */
+    private int length = 0;
 
     @Override
     public int size()
     {
-        return storage == null? 0 : storage.length;
+        return length;
     }
 
     @Override
-    public boolean isEmpty() {
-        throw new UnsupportedOperationException();
+    public boolean isEmpty()
+    {
+        return length == 0;
     }
 
     @Override
@@ -28,7 +37,7 @@ public class DiyArrayList<T> implements List<T>
 
     @Override
     public Iterator<T> iterator() {
-        return new DiyIterator(this);
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -44,18 +53,18 @@ public class DiyArrayList<T> implements List<T>
     @Override
     public boolean add(T t)
     {
-        extendStorage();
-        storage[storage.length - 1] = t;
+        if (length >= storage.length) {
+            extendStorage();
+        }
+        storage[length] = t;
+        length++;
         return true;
     }
 
     private void extendStorage()
     {
-        if (storage == null) {
-            storage = (T[]) new Object[1];
-        } else {
-            storage = Arrays.copyOf(storage, storage.length + 1);
-        }
+        System.out.println("EXTEND");
+        storage = Arrays.copyOf(storage, storage.length * kExtend);
     }
 
     @Override
