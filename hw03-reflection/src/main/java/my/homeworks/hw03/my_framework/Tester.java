@@ -15,13 +15,10 @@ public class Tester {
             InstantiationException, AnnotationNotExistsException {
 
         AnnotationProcessor annotationProcessor = new AnnotationProcessor(clazz);
-        Object instance = clazz.getConstructor().newInstance();
 
-
-        (new HandlerBuilder(annotationProcessor, instance))
+        (new HandlerBuilder(annotationProcessor, clazz))
                 .buildHandlers()
                 .forEach(handler -> this.testItems.add(new TestItem(handler)));
-
     }
 
     public void run() {
