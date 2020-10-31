@@ -7,11 +7,11 @@ public class DiyArrayList<T> implements List<T>
     /**
      * Коэффициент расширения хранилища
      */
-    final int kExtend = 2;
+    private static final int K_EXTEND = 2;
 
-    final int initCapacity = 5;
+    private static final int INIT_CAPACITY = 5;
 
-    private T[] storage = (T[]) new Object[initCapacity];
+    private T[] storage = (T[]) new Object[INIT_CAPACITY];
 
     /**
      * Текущее количество хранимых объектов
@@ -64,7 +64,7 @@ public class DiyArrayList<T> implements List<T>
     private void extendStorage()
     {
         System.out.println("EXTEND");
-        storage = Arrays.copyOf(storage, storage.length * kExtend);
+        storage = Arrays.copyOf(storage, storage.length * K_EXTEND);
     }
 
     @Override
