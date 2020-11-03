@@ -9,10 +9,10 @@ import java.util.*;
 
 public class AnnotationProcessor {
 
-    private Class<?> clazz;
+    private final Class<?> clazz;
 
-    private HashMap<String, Method> commonMethods = new HashMap<>();
-    private ArrayList<Method> testMethods = new ArrayList<>();
+    private final HashMap<String, Method> commonMethods = new HashMap<>();
+    private final ArrayList<Method> testMethods = new ArrayList<>();
 
     public AnnotationProcessor(Class<?> clazz) {
         this.clazz = clazz;
@@ -22,10 +22,11 @@ public class AnnotationProcessor {
     private void parseFrameworksAnnotations()
     {
         for (var method: clazz.getDeclaredMethods()) {
-
-            Arrays.stream(method.getAnnotations())
-                    .filter(annotation -> isFrameworkAnnotation(annotation))
-                    .forEach(annotation -> registerMethod(annotation, method));
+            for (var annotation: method.getAnnotations()) {
+                if (isFrameworkAnnotation(annotation)) {
+                    registerMethod(annotation, method);
+                }
+            }
         }
     }
 
@@ -52,7 +53,7 @@ public class AnnotationProcessor {
         return commonMethods.get(annotationClass);
     }
 
-    public ArrayList<Method> getTestMethods() {
+    public List<Method> getTestMethods() {
         return testMethods;
     }
 }
