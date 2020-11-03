@@ -45,7 +45,15 @@ public class AnnotationProcessor {
         }
     }
 
-    public Method getCommonMethod(String annotationClass) throws AnnotationNotExistsException
+    public Method getMethodBefore() throws AnnotationNotExistsException {
+        return getCommonMethod(Before.class.getName());
+    }
+
+    public Method getMethodAfter() throws AnnotationNotExistsException {
+        return getCommonMethod(After.class.getName());
+    }
+
+    private Method getCommonMethod(String annotationClass) throws AnnotationNotExistsException
     {
         if (!commonMethods.containsKey(annotationClass)) {
             throw new AnnotationNotExistsException(annotationClass);
