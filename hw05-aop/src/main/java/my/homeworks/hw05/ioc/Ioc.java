@@ -20,16 +20,16 @@ public class Ioc {
     private Object createInstance(Class<?> clazz) throws Exception {
 
         Object object = clazz.getConstructor().newInstance();
-        List<Method> methods = getWrappedMethods(clazz);
+        Set<Method> methods = getWrappedMethods(clazz);
         if (methods.isEmpty()) {
             return object;
         }
         return buildProxy(object, methods);
     }
 
-    private List<Method> getWrappedMethods(Class<?> clazz)
+    private Set<Method> getWrappedMethods(Class<?> clazz)
     {
-        List<Method> methods = new ArrayList<>();
+        Set<Method> methods = new HashSet<>();
 
         for (Method method: clazz.getDeclaredMethods()) {
             if (method.isAnnotationPresent(Log.class)) {
@@ -39,7 +39,7 @@ public class Ioc {
         return methods;
     }
 
-    private Object buildProxy(Object objectToWrap, List<Method> proxiedMethods) {
+    private Object buildProxy(Object objectToWrap, Set<Method> proxiedMethods) {
 
         MyInvocationHandler myInvocationHandler = new MyInvocationHandler(objectToWrap, proxiedMethods);
 

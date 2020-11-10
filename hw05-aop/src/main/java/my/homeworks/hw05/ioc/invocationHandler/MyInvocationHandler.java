@@ -3,16 +3,19 @@ package my.homeworks.hw05.ioc.invocationHandler;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MyInvocationHandler implements InvocationHandler {
 
     private final Object wrappedObject;
-    private final List<Method> wrappedMethods;
+    private final Set<String> wrappedMethodHashes = new HashSet<>();
 
-    public MyInvocationHandler(Object wrappedObject, List<Method> wrappedMethods) {
+    public MyInvocationHandler(Object wrappedObject, Set<Method> wrappedMethods) {
         this.wrappedObject = wrappedObject;
-        this.wrappedMethods = wrappedMethods;
+        for (Method method : wrappedMethods) {
+            wrappedMethodHashes.add(getMethodHash(method));
+        }
     }
 
     public Object getWrappedObject() {
@@ -20,20 +23,11 @@ public class MyInvocationHandler implements InvocationHandler {
     }
 
     protected boolean isMethodWrapped(Method method) {
-
-        return wrappedMethods
-                .stream()
-                .filter(wrappedMethod -> isSame(wrappedMethod, method))
-                .count() > 0;
-    }
-
-    private boolean isSame(Method method1, Method method2) {
-        return getMethodHash(method1).equals(getMethodHash(method2));
+        return wrappedMethodHashes.contains(getMethodHash(method));
     }
 
     private String getMethodHash(Method method) {
-        String hash = method.getReturnType().getName();
-        hash += method.getName();
+        String hash = method.getName();
         for (Parameter parameter: method.getParameters()) {
             hash += parameter.getType().getName();
         }
