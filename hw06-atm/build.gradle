@@ -1,0 +1,47 @@
+
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+
+    // Apply the application plugin to add support for building a CLI application.
+    id 'application'
+    // Build uber-jar
+    id 'com.github.johnrengelman.shadow'
+}
+
+sourceCompatibility = JavaVersion.VERSION_14
+targetCompatibility = JavaVersion.VERSION_14
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+shadowJar {
+    archivesBaseName = 'atm'
+    archiveVersion.set('0.1')
+    archiveClassifier.set('')
+    manifest {
+        attributes 'Main-Class': 'my.homeworks.hw06.App'
+    }
+}
+
+application {
+    // Define the main class for the application.
+    mainClassName = 'my.homeworks.hw06.App'
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testImplementation ('org.junit.jupiter:junit-jupiter-api:5.2.0')
+    testImplementation ('org.junit.jupiter:junit-jupiter-engine:5.0.0')
+    testImplementation ('org.junit.jupiter:junit-jupiter-params:5.7.0')
+    testImplementation ('org.assertj:assertj-core:3.8.0')
+}
+
+test {
+    useJUnitPlatform()
+    testLogging { events "passed", "skipped", "failed" }
+}
+
+tasks.build.dependsOn tasks.shadowJar
