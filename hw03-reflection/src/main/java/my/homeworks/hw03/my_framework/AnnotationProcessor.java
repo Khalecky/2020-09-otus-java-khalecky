@@ -11,8 +11,8 @@ public class AnnotationProcessor {
 
     private final Class<?> clazz;
 
-    private final HashMap<String, Method> commonMethods = new HashMap<>();
-    private final ArrayList<Method> testMethods = new ArrayList<>();
+    private final Map<String, Method> commonMethods = new HashMap<>();
+    private final List<Method> testMethods = new ArrayList<>();
 
     public AnnotationProcessor(Class<?> clazz) {
         this.clazz = clazz;
